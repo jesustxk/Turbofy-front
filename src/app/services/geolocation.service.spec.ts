@@ -14,4 +14,8 @@ describe('GeolocationService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('get geolocation not null', () => {
+    expect(service.getGeolocation).toBeTruthy();
+  });
+
 });
