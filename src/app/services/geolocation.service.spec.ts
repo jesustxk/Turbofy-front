@@ -18,4 +18,8 @@ describe('GeolocationService', () => {
     expect(service.getGeolocation).toBeTruthy();
   });
 
+  it('get geolocation equals', () => {
+    expect(service.getGeolocation).toEqual(service.getGeolocation);
+  });
+
 });

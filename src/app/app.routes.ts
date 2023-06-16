@@ -18,4 +18,12 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
+  {
+    path: 'all-songs',
+    loadComponent: () => import('./pages/all-songs/all-songs.page').then( m => m.AllSongsPage)
+  },
+  {
+    path: 'search-songs',
+    loadComponent: () => import('./pages/search-songs/search-songs.page').then( m => m.SearchSongsPage)
+  },
 ];

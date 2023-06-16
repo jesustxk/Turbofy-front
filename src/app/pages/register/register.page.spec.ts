@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { IonicModule } from '@ionic/angular';
 import { RegisterPage } from './register.page';
 
 describe('RegisterPage', () => {
@@ -6,6 +8,10 @@ describe('RegisterPage', () => {
   let fixture: ComponentFixture<RegisterPage>;
 
   beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [IonicModule.forRoot(), RouterTestingModule]
+    }).compileComponents();
+    
     fixture = TestBed.createComponent(RegisterPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
