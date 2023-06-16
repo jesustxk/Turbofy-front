@@ -1,4 +1,4 @@
-FROM node:16-alpine as build
+FROM node:18-alpine AS build
 
 # Create app directory
 WORKDIR /app
@@ -6,13 +6,13 @@ WORKDIR /app
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY package*.json /code/
+COPY package*.json ./
 
 RUN npm install -g ionic
 RUN npm install
 
 # Bundle app source
-COPY . /code/
+COPY . .
 
 RUN ionic build --prod
 
