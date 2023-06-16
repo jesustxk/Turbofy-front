@@ -3,10 +3,10 @@
     <ion-title>
       Turbofy
     </ion-title>
-    <ion-button id="registerButton" label="register" slot="end">
+    <ion-button id="registerButton" label="register" slot="end" (click)="goRegister()">
       REGISTRO
     </ion-button>
-    <ion-button id="loginButton" label="login" slot="end">
+    <ion-button id="loginButton" label="login" slot="end" (click)="goLogin()">
       LOGIN
     </ion-button>
   </ion-toolbar>
@@ -31,19 +31,19 @@
             <p>¡Tú eliges!</p>&nbsp;&nbsp;
 
             <p>¿Quieres probar? Busca alguna canción en Turbofy</p>
-            <ion-button id="searchButton">
+            <ion-button id="searchButton" label="searchButton" (click)="goSearchSongs()">
               <ion-icon name="musical-note-outline"></ion-icon>&nbsp;
               Buscar canciones
             </ion-button>
 
             <p>También puedes acceder al listado completo de canciones:</p>
-            <ion-button id="allSongsButton">
+            <ion-button id="allSongsButton" label="allSongsButton" (click)="goAllSongs()">
               <ion-icon name="musical-notes-outline"></ion-icon>&nbsp;
               Ver todas las canciones
             </ion-button>
 
             <p>Regístrate para descubrir todas las funcionalidades de Turbofy:</p>
-            <ion-button id="turbomemberButton">
+            <ion-button id="turbomemberButton" label="turbomemberButton" (click)="goRegister()">
               <ion-icon name="person-add-outline"></ion-icon>&nbsp;
               ¡Quiero ser un Turbomember!
             </ion-button>
