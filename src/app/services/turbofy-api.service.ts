@@ -11,14 +11,18 @@ export class TurbofyApiService {
   constructor() { }
 
   async addSong() {
+    console.log('addSong');
 
   }
 
   async getSong(songId: string) {
+    console.log('getSong');
 
   }
 
   async getAllSongs(): Promise<Song[]> {
+    console.log('getAllSongs');
+    
     let responseSongs = await fetch(this.turbofyAPI + '/songs/readAll', {
       method: 'GET',
       headers: {
@@ -31,7 +35,8 @@ export class TurbofyApiService {
   }
 
   async searchSong(name: String, artist: String, date: String): Promise<Song[]> {
-    console.log('WORK')
+    console.log('searchSong');
+    
     let queryParams = '';
 
     if (name) {
@@ -54,22 +59,27 @@ export class TurbofyApiService {
   }
 
   async updateSong() {
+    console.log('updateSong');
 
   }
 
   async deleteSong() {
+    console.log('deleteSong');
 
   }
 
   async getSpotySongs() {
+    console.log('getSpotySongs');
 
   }
 
   async addComment() {
+    console.log('addComment');
 
   }
 
   async deleteComment() {
+    console.log('deleteComment');
     
   }
 

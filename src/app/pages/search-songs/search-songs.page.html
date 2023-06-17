@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row id="formRow" class="ion-align-items-center ion-justify-content-center">
-      <div *ngIf="searchForm">
+      <div id="searchForm" *ngIf="searchForm">
         <form class="form" [formGroup]="searchForm" (ngSubmit)="searchSong(searchForm.value)">
           <ion-item>
             <ion-input label="Nombre de la canción:" labelPlacement="floating" placeholder="nombre" type="text" formControlName="name"></ion-input>

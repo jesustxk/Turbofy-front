@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row id="formRow" class="ion-align-items-center ion-justify-content-center">
-      <div *ngIf="formCreation">
+      <div id="creationForm" *ngIf="formCreation">
         <form class="form" [formGroup]="formCreation" (ngSubmit)="createUser(formCreation.value)">
           <ion-item>
             <ion-input label="Email:" labelPlacement="floating" placeholder="email" type="text"

@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row id="formRow" class="ion-align-items-center ion-justify-content-center">
-      <div *ngIf="formValidation">
+      <div id="validationForm" *ngIf="formValidation">
         <form class="form" [formGroup]="formValidation" (ngSubmit)="tryLogin(formValidation.value)">
           <ion-item>
             <ion-input label="Email:" labelPlacement="floating" placeholder="email" type="text"

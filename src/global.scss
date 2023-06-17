@@ -47,3 +47,7 @@ ion-card-content {
     align-items: center;
     height: 100%;
 }
+
+ion-content {
+    --background: url(assets/img/background.jpg) !important;
+}
