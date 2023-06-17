@@ -1,0 +1,32 @@
+ion-card {
+    width: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+ion-img {
+    max-width: 40vw;
+    max-height: 40vw;
+    margin: 10px;
+}
+
+#imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+#imgInfo {
+    display: flex;
+    align-items: center;
+}
+
+#imgInfoTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

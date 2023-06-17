@@ -1,13 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>search-songs</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Búsqueda de canciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">search-songs</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-card>
+        <ion-card-header>
+          BUSCAR CANCIONES HEADER
+        </ion-card-header>
+        <ion-card-content>
+          BUSCAR CANCIONES CONTENT
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-card>
+        <ion-card-header>
+          RESULTADO HEADER
+        </ion-card-header>
+        <ion-card-content>
+          RESULTADO CONTENT
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Song } from '../../models/song';
+import { TurbofyApiService } from '../../services/turbofy-api.service';
 
 @Component({
   selector: 'app-all-songs',
@@ -12,9 +14,12 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AllSongsPage implements OnInit {
 
-  constructor() { }
+  songs: Song[] = [];
 
-  ngOnInit() {
+  constructor(public turbofyApi: TurbofyApiService) { }
+
+  async ngOnInit() {
+    this.songs = await this.turbofyApi.getAllSongs();
   }
 
 }

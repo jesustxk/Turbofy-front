@@ -1,13 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>all-songs</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Todas las canciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">all-songs</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row *ngFor="let song of songs" class="ion-align-items-center ion-justify-content-center">
+      <ion-card>
+        <ion-card-content id="imageContainer">
+          <div>
+            <ion-img *ngIf="song === undefined" src="assets/img/no_image.png" alt="no imagen"></ion-img>
+            <ion-img *ngIf="song !== undefined" [src]="song.image" alt="no imagen"></ion-img>
+          </div>
+          <div id="imgInfo">
+            <div id="imgInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.date}}</div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>
