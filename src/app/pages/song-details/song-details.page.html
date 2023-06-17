@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Todas las canciones</ion-title>
+    <ion-title>song-details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid *ngIf="songs.length > 0">
-    <ion-row *ngFor="let song of songs" class="ion-align-items-center ion-justify-content-center">
+  <ion-grid>
+    <ion-row *ngIf="song" class="ion-align-items-center ion-justify-content-center">
       <ion-card>
         <ion-card-content id="imageContainer">
           <div>
@@ -22,9 +22,8 @@
           <div id="songInfo">
             <div id="songInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.artist}}</div>
           </div>
-          <ion-button id="detailsButton{{song._id}}" label="details" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
-            DETALLES
-          </ion-button>
+          <p>{{song.album}} - {{song.date}}</p>
+          <p>{{song.genre}} - {{song.duration}}</p>
         </ion-card-content>
       </ion-card>
     </ion-row>

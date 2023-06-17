@@ -18,9 +18,9 @@ export class SearchSongsPage implements OnInit {
 
   songs: Song[] = [];
 
-  constructor(public turbofyApi: TurbofyApiService, private formBuilder: FormBuilder) { }
+  constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.searchForm = this.formBuilder.group({
       name: new FormControl('', Validators.compose([
         Validators.pattern('[a-z A-Z]+')

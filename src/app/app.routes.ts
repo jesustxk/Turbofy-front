@@ -19,11 +19,23 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
   {
-    path: 'all-songs',
+    path: 'songs/all-songs',
     loadComponent: () => import('./pages/all-songs/all-songs.page').then( m => m.AllSongsPage)
   },
   {
-    path: 'search-songs',
+    path: 'songs/search-songs',
     loadComponent: () => import('./pages/search-songs/search-songs.page').then( m => m.SearchSongsPage)
+  },
+  {
+    path: 'songs/song-details/:songId',
+    loadComponent: () => import('./pages/song-details/song-details.page').then( m => m.SongDetailsPage)
+  },
+  {
+    path: 'turbomember-zone',
+    loadComponent: () => import('./private-pages/turbomember-zone/turbomember-zone.page').then( m => m.TurbomemberZonePage)
+  },
+  {
+    path: 'turbomember-zone/add-song',
+    loadComponent: () => import('./private-pages/add-song/add-song.page').then( m => m.AddSongPage)
   },
 ];

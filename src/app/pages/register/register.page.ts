@@ -49,6 +49,7 @@ export class RegisterPage implements OnInit {
   createUser(value: { email: string; password: string; }) {
     this.authService.createUser(value)
       .then(res => {
+        this.showSuccess();
         this.router.navigate(["/home"]);
       }, err => {
         this.showError();
@@ -61,6 +62,13 @@ export class RegisterPage implements OnInit {
   async showError() {
     await Toast.show({
       text: 'Error en el registro, revise los datos introducidos.',
+      position: 'top'
+    });
+  };
+
+  async showSuccess() {
+    await Toast.show({
+      text: 'Usuario registrado. ¡Bienvenido Turbomember!',
       position: 'top'
     });
   };

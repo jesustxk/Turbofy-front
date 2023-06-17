@@ -1,5 +1,5 @@
 ion-card {
-    width: 40vh;
+    width: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,8 +8,8 @@ ion-card {
 }
 
 ion-img {
-    max-width: 10vw;
-    max-height: 10vw;
+    max-width: 20vw;
+    max-height: 20vw;
     margin: 10px;
 }
 
@@ -34,4 +34,20 @@ ion-img::part(image) {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+form > ion-item {
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+#formRow {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

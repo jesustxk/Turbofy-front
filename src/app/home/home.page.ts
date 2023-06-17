@@ -22,11 +22,11 @@ export class HomePage {
   }
 
   goSearchSongs() {
-    this.router.navigateByUrl('/search-songs');
+    this.router.navigateByUrl('/songs/search-songs');
   }
 
   goAllSongs() {
-    this.router.navigateByUrl('/all-songs');
+    this.router.navigateByUrl('/songs/all-songs');
   }
 
 }

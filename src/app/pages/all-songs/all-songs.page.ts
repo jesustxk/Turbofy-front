@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Song } from '../../models/song';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
@@ -10,7 +11,7 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
   templateUrl: './all-songs.page.html',
   styleUrls: ['./all-songs.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class AllSongsPage implements OnInit {
 

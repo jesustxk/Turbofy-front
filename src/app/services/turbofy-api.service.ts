@@ -18,6 +18,16 @@ export class TurbofyApiService {
   async getSong(songId: string) {
     console.log('getSong');
 
+    let responseSong = await fetch(this.turbofyAPI + '/songs/read?songId=' + songId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    console.log(song)
+    return song;
   }
 
   async getAllSongs(): Promise<Song[]> {

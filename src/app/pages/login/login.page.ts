@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
   tryLogin(value: { email: string; password: string; }) {
     this.authService.doLogin(value)
       .then(res => {
+        this.showSuccess();
         this.router.navigate(["/turbomember-zone"]);
       }, err => {
         this.showError();
@@ -65,6 +66,13 @@ export class LoginPage implements OnInit {
   async showError() {
     await Toast.show({
       text: 'Error en el acceso, revise los datos introducidos.',
+      position: 'top'
+    });
+  };
+
+  async showSuccess() {
+    await Toast.show({
+      text: 'Inicio de sesión realizado con éxito.',
       position: 'top'
     });
   };
