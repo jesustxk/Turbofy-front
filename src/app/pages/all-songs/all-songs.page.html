@@ -8,17 +8,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <ion-grid *ngIf="songs.length > 0">
     <ion-row *ngFor="let song of songs" class="ion-align-items-center ion-justify-content-center">
       <ion-card>
         <ion-card-content id="imageContainer">
           <div>
-            <ion-img *ngIf="song === undefined" src="assets/img/no_image.png" alt="no imagen"></ion-img>
-            <ion-img *ngIf="song !== undefined" [src]="song.image" alt="no imagen"></ion-img>
+            <ion-img *ngIf="song.image === undefined" src="assets/img/no_image.png" alt="no imagen"></ion-img>
+            <ion-img *ngIf="song.image !== undefined && song.image.url === undefined" [src]="song.image.base64" alt="no imagen"></ion-img>
+            <ion-img *ngIf="song.image !== undefined && song.image.url !== undefined" [src]="song.image.url" alt="no imagen"></ion-img>
           </div>
-          <div id="imgInfo">
-            <div id="imgInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.date}}</div>
+          <div id="songInfo">
+            <div id="songInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.artist}}</div>
           </div>
+          <p>{{song.album}} - {{song.date}}</p>
+          <p>{{song.genre}} - {{song.duration}}</p>
         </ion-card-content>
       </ion-card>
     </ion-row>

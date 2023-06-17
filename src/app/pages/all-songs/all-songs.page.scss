@@ -7,8 +7,8 @@ ion-card {
 }
 
 ion-img {
-    max-width: 40vw;
-    max-height: 40vw;
+    max-width: 15vw;
+    max-height: 15vw;
     margin: 10px;
 }
 
@@ -20,12 +20,12 @@ ion-img {
     width: 100%;
 }
 
-#imgInfo {
+#songInfo {
     display: flex;
     align-items: center;
 }
 
-#imgInfoTitle {
+#songInfoTitle {
     display: flex;
     flex-direction: row;
     align-items: center;

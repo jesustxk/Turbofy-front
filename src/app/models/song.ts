@@ -4,7 +4,8 @@ export interface Song {
     _id: string
     name: string
     artist: string
-    image: {url: string, imageBase64String: string}
+    album: string
+    image: {url: string, base64: string}
     genre: string
     duration: number
     date: Date
