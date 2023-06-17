@@ -3,14 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>song-details</ion-title>
+    <ion-title>Detalles de la canción</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row *ngIf="song" class="ion-align-items-center ion-justify-content-center">
-      <ion-card>
+      <ion-card id="songDetails">
         <ion-card-content id="imageContainer">
           <div>
             <ion-img *ngIf="song.image === undefined" src="assets/img/no_image.png" alt="no imagen"></ion-img>
@@ -24,6 +24,21 @@
           </div>
           <p>{{song.album}} - {{song.date}}</p>
           <p>{{song.genre}} - {{song.duration}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row *ngFor="let comment of comments" class="ion-align-items-center ion-justify-content-center">
+      <ion-card class="songComment">
+        <ion-card-content id="commentContainer">
+          <div class="commentAuthor">
+            <ion-title>{{comment.author}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{comment.rating}} <ion-icon name="star" color="primary"></ion-icon></ion-title>
+          </div>
+          <div class="commentComment">
+            <p>{{comment.comment}}</p>
+          </div>
+          <div class="commentDate">
+            <p>Fecha: {{comment.date}}</p>
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-row>

@@ -1,10 +1,17 @@
 ion-card {
-    width: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     border-radius: 10px;
+}
+
+ion-card#songDetails {
+    width: 50vh;
+}
+
+ion-card.songComment {
+    width: 100vh;
 }
 
 ion-img {
@@ -49,5 +56,21 @@ form > ion-item {
 
 #formRow {
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#commentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.commentAuthor {
+    margin-bottom: 10px;
+}
+
+.commentComment {
     margin-bottom: 10px;
 }
