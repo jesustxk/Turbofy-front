@@ -14,8 +14,10 @@
         <ion-card-content id="imageContainer">
           <div>
             <ion-img *ngIf="song.image === undefined" src="assets/img/no_image.png" alt="no imagen"></ion-img>
-            <ion-img *ngIf="song.image !== undefined && song.image.url === undefined" [src]="song.image.base64" alt="no imagen"></ion-img>
-            <ion-img *ngIf="song.image !== undefined && song.image.url !== undefined" [src]="song.image.url" alt="no imagen"></ion-img>
+            <ion-img *ngIf="song.image !== undefined && song.image.url === undefined" [src]="song.image.base64"
+              alt="no imagen"></ion-img>
+            <ion-img *ngIf="song.image !== undefined && song.image.url !== undefined" [src]="song.image.url"
+              alt="no imagen"></ion-img>
           </div>
           <div id="songInfo">
             <div id="songInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.artist}}</div>
