@@ -1,0 +1,53 @@
+ion-card {
+    width: 50em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+ion-img {
+    max-width: 15vw;
+    max-height: 15vw;
+    margin: 10px;
+}
+
+ion-img::part(image) {
+    border-radius: 10px;
+}
+
+#imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+#songInfo {
+    display: flex;
+    align-items: center;
+}
+
+#songInfoTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+form > ion-item {
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+#formRow {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -3,10 +3,35 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Login</ion-title>
+    <ion-title>Inicio de sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row id="formRow" class="ion-align-items-center ion-justify-content-center">
+      <div *ngIf="formValidation">
+        <form class="form" [formGroup]="formValidation" (ngSubmit)="tryLogin(formValidation.value)">
+          <ion-item>
+            <ion-input label="Email:" labelPlacement="floating" placeholder="email" type="text"
+              formControlName="email"></ion-input>
+          </ion-item>
 
+          <ion-item>
+            <ion-input label="Contraseña:" labelPlacement="floating" placeholder="contraseña" type="password"
+              formControlName="password"></ion-input>
+          </ion-item>
+
+          <div class="div-button-login">
+            <ion-button type="submit" [disabled]="!formValidation.valid">Iniciar
+              sesión</ion-button>
+          </div>
+
+          <div class="div-label-error">
+            <ion-label class="error-message">{{ errorMessage }}</ion-label>
+          </div>
+        </form>
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -8,5 +8,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row id="formRow" class="ion-align-items-center ion-justify-content-center">
+      <div *ngIf="formCreation">
+        <form class="form" [formGroup]="formCreation" (ngSubmit)="createUser(formCreation.value)">
+          <ion-item>
+            <ion-input label="Email:" labelPlacement="floating" placeholder="email" type="text"
+              formControlName="email"></ion-input>
+          </ion-item>
 
+          <ion-item>
+            <ion-input label="Contraseña:" labelPlacement="floating" placeholder="contraseña" type="password"
+              formControlName="password"></ion-input>
+          </ion-item>
+
+          <div class="div-button-register">
+            <ion-button type="submit" [disabled]="!formCreation.valid">Registrarse</ion-button>
+          </div>
+
+          <div class="div-label-error">
+            <ion-label class="error-message">{{ errorMessage }}</ion-label>
+          </div>
+        </form>
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>
