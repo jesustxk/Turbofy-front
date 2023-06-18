@@ -41,9 +41,17 @@
             <ion-img *ngIf="song.image !== undefined && song.image.url !== undefined" [src]="song.image.url"
               alt="no imagen"></ion-img>
           </div>
+
           <div id="songInfo">
             <div id="songInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.artist}}</div>
           </div>
+          <div id="songInfo">
+            <div>{{song.date}}</div>
+          </div>
+
+          <ion-button id="detailsButton{{song._id}}" label="details" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
+            DETALLES
+          </ion-button>
         </ion-card-content>
       </ion-card>
     </ion-row>

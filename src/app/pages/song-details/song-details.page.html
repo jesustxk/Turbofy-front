@@ -20,6 +20,7 @@
             <ion-img *ngIf="song.image !== undefined && song.image.url !== undefined" [src]="song.image.url"
               alt="no imagen"></ion-img>
           </div>
+
           <div id="songInfo">
             <div id="songInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.artist}}</div>
           </div>
@@ -44,7 +45,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-input label="Puntuación (1 a 5)" labelPlacement="floating" placeholder="X" type="text"
+            <ion-input label="Puntuación (0 a 5)" labelPlacement="floating" placeholder="X" type="text"
               formControlName="rating"></ion-input>
           </ion-item>
 

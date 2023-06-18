@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Song } from '../../models/song';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
@@ -10,7 +11,7 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
   templateUrl: './search-songs.page.html',
   styleUrls: ['./search-songs.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class SearchSongsPage implements OnInit {
 
