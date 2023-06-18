@@ -9,6 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
+    <!-- DETALLES CANCION -->
     <ion-row *ngIf="song" class="ion-align-items-center ion-justify-content-center">
       <ion-card id="songDetails">
         <ion-card-content id="imageContainer">
@@ -27,17 +28,47 @@
         </ion-card-content>
       </ion-card>
     </ion-row>
+
+    <!-- RECUADRO AÑADIR COMENTARIO -->
+    <ion-row id="formRow" class="ion-align-items-center ion-justify-content-center">
+      <div id="commentForm" *ngIf="commentForm">
+        <form class="form" [formGroup]="commentForm" (ngSubmit)="addComment(commentForm.value)">
+          <ion-item>
+            <ion-input label="Autor:" labelPlacement="floating" placeholder="nombre" type="text"
+              formControlName="author"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input label="Comentario:" labelPlacement="floating" placeholder="texto" type="text"
+              formControlName="comment"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input label="Puntuación (1 a 5)" labelPlacement="floating" placeholder="X" type="text"
+              formControlName="rating"></ion-input>
+          </ion-item>
+
+          <div id="formSubmit">
+            <ion-button type="submit" [disabled]="!commentForm.valid">Añadir comentario</ion-button>
+          </div>
+        </form>
+      </div>
+    </ion-row>
+
+    <!-- LISTADO COMENTARIOS -->
     <ion-row *ngFor="let comment of comments" class="ion-align-items-center ion-justify-content-center">
       <ion-card class="songComment">
         <ion-card-content id="commentContainer">
           <div class="commentAuthor">
-            <ion-title>{{comment.author}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{comment.rating}} <ion-icon name="star" color="primary"></ion-icon></ion-title>
+            <ion-title>{{comment.author}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{comment.rating}} <ion-icon name="star"
+                color="primary"></ion-icon></ion-title>
           </div>
           <div class="commentComment">
             <p>{{comment.comment}}</p>
           </div>
           <div class="commentDate">
-            <p>Fecha: {{comment.date}}</p>
+            <h2>Fecha:</h2>
+            <p>{{comment.date}}</p>
           </div>
         </ion-card-content>
       </ion-card>

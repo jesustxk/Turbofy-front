@@ -23,10 +23,10 @@ export class SearchSongsPage implements OnInit {
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
       name: new FormControl('', Validators.compose([
-        Validators.pattern('[a-z A-Z]+')
+        Validators.pattern('[a-zñÑ A-Z]+')
       ])),
       artist: new FormControl('', Validators.compose([
-        Validators.pattern('[a-z A-Z]+')
+        Validators.pattern('[a-zñÑ A-Z]+')
       ])),
       date: new FormControl('', Validators.compose([
         Validators.pattern('[0-9]{4}/[0-1]{0,1}[1-9]{1}/[0-3]{0,1}[1-9]{1}')

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Song } from '../models/song';
+import { GeolocationService } from '../services/geolocation.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class TurbofyApiService {
 
   turbofyAPI: string = 'http://localhost:8080';
 
-  constructor() { }
+  constructor(private geolocationService: GeolocationService) { }
 
   async addSong() {
     console.log('addSong');
@@ -83,14 +84,34 @@ export class TurbofyApiService {
 
   }
 
-  async addComment() {
+  async addComment(songId: string, author: string, comment: string, rating: number) {
     console.log('addComment');
 
+    const geolocation = await this.geolocationService.getGeolocation();
+
+    const newComment = {
+      author: author,
+      comment: comment,
+      rating: rating,
+      geolocation: { latitude: geolocation.latitude, longitude: geolocation.longitude},
+      // la fecha se pone por defecto la actual al insertar en la base de datos
+    };
+
+    let responseSong = await fetch(this.turbofyAPI + '/comments/create?songId=' + songId, {
+      method: 'POST',
+      body: JSON.stringify(newComment),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    return song;
   }
 
   async deleteComment() {
     console.log('deleteComment');
-    
+
   }
 
 }
