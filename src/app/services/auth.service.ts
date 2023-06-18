@@ -9,6 +9,8 @@ export class AuthService {
 
   userData: any;
 
+  isLogged: boolean = false;
+
   constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -24,11 +26,16 @@ export class AuthService {
   }
 
   doLogin(value: { email: string; password: string; }) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.afAuth.signInWithEmailAndPassword(value.email, value.password)
-        .then(
-          res => resolve(res),
-          err => reject(err))
+        .then(() => {
+          this.isLogged = true;
+
+          resolve();
+        }).catch((error) => {
+          console.log(error);
+          reject();
+        });
     })
   }
 
@@ -45,6 +52,8 @@ export class AuthService {
     return new Promise<void>((resolve, reject) => {
       this.afAuth.signOut()
         .then(() => {
+          this.isLogged = false;
+          
           localStorage.removeItem('user');
           resolve();
         }).catch((error) => {
@@ -52,6 +61,10 @@ export class AuthService {
           reject();
         });
     })
+  }
+
+  isLoggedIn() {
+    return this.isLogged;
   }
 
 }
