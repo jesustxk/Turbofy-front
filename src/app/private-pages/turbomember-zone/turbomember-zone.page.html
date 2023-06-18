@@ -8,5 +8,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-card>
+        <ion-card-header>
+          <div id="logoTurbofy">
+            <img src="assets/img/turbofy_logo.png" alt="no imagen">
+            <ion-card-title>
+              Bienvenido a Turbofy
+            </ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <div id="container">
+            <p>Con Turbofy puedes guardar tus canciones favoritas, ¡Solamente tienes que registrarte gratis!</p>&nbsp;
+            <p>Tan fácil como introducir a mano los datos o buscar las canciones directamente en Spotify.</p>
+            <p>¡Tú eliges!</p>&nbsp;&nbsp;
 
+            <p>¿Quieres probar? Busca alguna canción en Turbofy</p>
+            <ion-button id="searchButton" label="searchButton" routerLink="/songs/search-songs">
+              <ion-icon name="musical-note-outline"></ion-icon>&nbsp;
+              Buscar canciones
+            </ion-button>
+
+            <p>También puedes acceder al listado completo de canciones:</p>
+            <ion-button id="allSongsButton" label="allSongsButton" routerLink="/songs/all-songs">
+              <ion-icon name="musical-notes-outline"></ion-icon>&nbsp;
+              Ver todas las canciones
+            </ion-button>
+
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>

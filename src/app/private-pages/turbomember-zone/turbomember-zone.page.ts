@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './turbomember-zone.page.html',
   styleUrls: ['./turbomember-zone.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class TurbomemberZonePage implements OnInit {
 

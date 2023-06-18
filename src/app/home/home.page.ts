@@ -13,20 +13,4 @@ export class HomePage {
 
   constructor(public router: Router) {}
 
-  goRegister() {
-    this.router.navigateByUrl('/register');
-  }
-
-  goLogin() {
-    this.router.navigateByUrl('/login');
-  }
-
-  goSearchSongs() {
-    this.router.navigateByUrl('/songs/search-songs');
-  }
-
-  goAllSongs() {
-    this.router.navigateByUrl('/songs/all-songs');
-  }
-
 }
