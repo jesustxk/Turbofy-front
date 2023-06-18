@@ -31,3 +31,7 @@ ion-img::part(image) {
     max-width: 100%;
     overflow: auto;
 }
+
+#songButtons > ion-button {
+    padding: 5px;
+}

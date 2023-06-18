@@ -1,80 +1,76 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
 
 @Component({
-  selector: 'app-add-song',
-  templateUrl: './add-song.page.html',
-  styleUrls: ['./add-song.page.scss'],
+  selector: 'app-edit-song',
+  templateUrl: './edit-song.page.html',
+  styleUrls: ['./edit-song.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class AddSongPage implements OnInit {
+export class EditSongPage implements OnInit {
 
   songForm: FormGroup | undefined;
 
-  photo: string;
+  song: any;
+  comments: Comment[] = [];
 
-  constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder) { }
+  constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getSong();
+    
     this.songForm = this.formBuilder.group({
-      url: new FormControl('', Validators.compose([
+      url: new FormControl(this.song.image.url, Validators.compose([
         Validators.pattern('(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?')
       ])),
-      name: new FormControl('', Validators.compose([
+      name: new FormControl(this.song.name, Validators.compose([
         Validators.pattern('^[ a-zñáéíóúA-ZÑÁÉÍÓÚ0-9_.,():-]*$')
       ])),
-      duration: new FormControl('', Validators.compose([
+      duration: new FormControl(this.song.duration, Validators.compose([
         Validators.pattern('^(0?[1-9]|1[0-2]):[0-5][0-9]$')
       ])),
-      artist: new FormControl('', Validators.compose([
+      artist: new FormControl(this.song.artist, Validators.compose([
         Validators.pattern('^[ a-zñáéíóúA-ZÑÁÉÍÓÚ0-9_.,():-]*$')
       ])),
-      album: new FormControl('', Validators.compose([
+      album: new FormControl(this.song.album, Validators.compose([
         Validators.pattern('^[ a-zñáéíóúA-ZÑÁÉÍÓÚ0-9_.,():-]*$')
       ])),
-      date: new FormControl('', Validators.compose([
+      date: new FormControl(this.song.date, Validators.compose([
         Validators.pattern('[0-9]{4}-[0-1]{0,1}[0-9]{1}-[0-3]{0,1}[0-9]{1}')
       ])),
     });
   }
 
-  async addSong(value: {
-    url: string; name: string; duration: string; 
+  async getSong() {
+    this.song = await this.turbofyApi.getSong(String(this.route.snapshot.paramMap.get('songId')));
+
+    if (this.song.comments) {
+      this.comments = this.song.comments;
+    }
+  }
+
+  async editSong(value: {
+    url: string; name: string; duration: string;
     artist: string; album: string; date: Date
   }) {
-    
-    const song = {
+
+    const editedSong = {
+      _id: this.song._id,
       name: value.name,
       duration: value.duration,
       artist: value.artist,
       album: value.album,
       date: value.date,
-      image: {},
+      image: { url: value.url },
       geolocation: {}
     }
 
-    if (this.photo) {
-      song.image = { base64: this.photo };
-    } else if (value.url) {
-      song.image = { url: value.url };
-    }
-
-    this.turbofyApi.addSongFromForm(song);
-  }
-
-  async takePicture() {
-    const image = await Camera.getPhoto({
-      resultType: CameraResultType.Base64,
-      allowEditing: false,
-      quality: 100
-    });
-
-    this.photo = 'data:image/jpeg;base64,' + image.base64String;
+    this.turbofyApi.updateSong(editedSong);
   }
 
 }

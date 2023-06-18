@@ -23,10 +23,10 @@ export class SongDetailsPage implements OnInit {
   constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.commentForm = this.formBuilder.group({
       author: new FormControl('', Validators.compose([
-        Validators.pattern('[a-zñÑ A-Z]+')
+        Validators.pattern('^[ a-zñáéíóúA-ZÑÁÉÍÓÚ0-9_.,():-]*$')
       ])),
       comment: new FormControl('', Validators.compose([
-        Validators.pattern('[a-zñÑ A-Z]+')
+        Validators.pattern('^[ a-zñáéíóúA-ZÑÁÉÍÓÚ0-9_.,():-]*$')
       ])),
       rating: new FormControl('', Validators.compose([
         Validators.pattern('[0-5]{1}')

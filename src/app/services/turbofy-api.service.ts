@@ -11,9 +11,43 @@ export class TurbofyApiService {
 
   constructor(private geolocationService: GeolocationService) { }
 
-  async addSong() {
+  async addSong(newSong: Song) {
     console.log('addSong');
 
+    const geolocation = await this.geolocationService.getGeolocation();
+
+    newSong.geolocation = { latitude: geolocation.latitude, longitude: geolocation.longitude};
+
+    let responseSong = await fetch(this.turbofyAPI + '/songs/create', {
+      method: 'POST',
+      body: JSON.stringify(newSong),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    return song;
+  }
+
+  async addSongFromForm(newSong: any) {
+    console.log('addSongFromForm');
+    
+    const geolocation = await this.geolocationService.getGeolocation();
+
+    newSong.geolocation = { latitude: geolocation.latitude, longitude: geolocation.longitude};
+    
+    let responseSong = await fetch(this.turbofyAPI + '/songs/create', {
+      method: 'POST',
+      body: JSON.stringify(newSong),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    
+    return song;
   }
 
   async getSong(songId: string) {
@@ -27,7 +61,6 @@ export class TurbofyApiService {
     });
 
     const song = await responseSong.json();
-    console.log(song)
     return song;
   }
 
@@ -66,12 +99,27 @@ export class TurbofyApiService {
     });
 
     const songs = await responseSongs.json();
+    console.log(songs)
     return songs;
   }
 
-  async updateSong() {
+  async updateSong(editedSong: any) {
     console.log('updateSong');
 
+    const geolocation = await this.geolocationService.getGeolocation();
+
+    editedSong.geolocation = { latitude: geolocation.latitude, longitude: geolocation.longitude};
+
+    let responseSong = await fetch(this.turbofyAPI + '/songs/update?songId=' + editedSong._id, {
+      method: 'POST',
+      body: JSON.stringify(editedSong),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    return song;
   }
 
   async deleteSong() {

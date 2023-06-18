@@ -52,9 +52,17 @@
             {{song.date}}
           </div>
 
-          <ion-button id="detailsButton{{song._id}}" label="details" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
-            DETALLES
-          </ion-button>
+          <div id="songButtons">
+            <ion-button id="detailsButton{{song._id}}" label="details" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
+              DETALLES
+            </ion-button>
+            <ion-button id="editButton{{song._id}}" label="edit" [routerLink]="['/', 'turbomember-zone', 'edit-song', song._id]" color="primary">
+              EDITAR
+            </ion-button>
+            <ion-button id="deleteButton{{song._id}}" label="delete" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
+              BORRAR
+            </ion-button>
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-row>

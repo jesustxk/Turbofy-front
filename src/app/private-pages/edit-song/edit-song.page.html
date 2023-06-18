@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/turbomember-zone"></ion-back-button>
     </ion-buttons>
-    <ion-title>Añade tus canciones</ion-title>
+    <ion-title>Edita la canción</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,19 +11,7 @@
   <ion-grid>
     <ion-row class="ion-align-items-center ion-justify-content-center">
       <div id="songForm" *ngIf="songForm">
-        <form class="form" [formGroup]="songForm" (ngSubmit)="addSong(songForm.value)">
-          <div class="formRow">
-            <ion-item>
-              <img class="imgItem" *ngIf="photo === undefined" src="assets/img/no_image.png" alt="no imagen">
-              <img class="imgItem" *ngIf="photo !== undefined" [src]="photo" alt="no imagen">
-            </ion-item>
-            <ion-fab horizontal="center">
-              <ion-fab-button (click)="takePicture()">
-                <ion-icon name="camera"></ion-icon>
-              </ion-fab-button>
-            </ion-fab>
-          </div>
-
+        <form class="form" [formGroup]="songForm" (ngSubmit)="editSong(songForm.value)">
           <div class="formRow">
             <ion-item>
               <ion-input label="URL imagen" labelPlacement="floating" placeholder="http://ww..." type="text"

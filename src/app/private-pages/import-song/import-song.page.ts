@@ -36,8 +36,10 @@ export class ImportSongPage implements OnInit {
 
   async searchSong(value: { name: String; artist: String; date: String }) {
     this.songs = await this.turbofyApi.searchSpotySongs(value.name, value.artist, value.date);
+  }
 
-    console.log(this.songs)
+  async importSong(song: Song) {
+    await this.turbofyApi.addSong(song);
   }
 
 }

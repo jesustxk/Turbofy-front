@@ -47,6 +47,10 @@
           <div id="songInfo">
             {{song.date}}
           </div>
+
+          <ion-button id="importButton{{song._id}}" label="details" (click)="importSong(song)" color="primary">
+            IMPORTAR CANCIÓN
+          </ion-button>
         </ion-card-content>
       </ion-card>
     </ion-row>

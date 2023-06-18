@@ -6,7 +6,7 @@ export interface Song {
     artist: string
     album: string
     image: {url: string, base64: string}
-    duration: number
+    duration: string
     date: Date
     geolocation?: {latitude: number, longitude: number}
     comments?: Comment[]

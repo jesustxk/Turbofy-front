@@ -45,4 +45,9 @@ export const routes: Routes = [
     //canMatch: [() => inject(AuthService).isLoggedIn()],
     loadComponent: () => import('./private-pages/import-song/import-song.page').then( m => m.ImportSongPage)
   },
+  {
+    path: 'turbomember-zone/edit-song/:songId',
+    //canMatch: [() => inject(AuthService).isLoggedIn()],
+    loadComponent: () => import('./private-pages/edit-song/edit-song.page').then( m => m.EditSongPage)
+  },
 ];
