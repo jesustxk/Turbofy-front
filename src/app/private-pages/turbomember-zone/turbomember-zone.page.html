@@ -15,26 +15,37 @@
           <div id="logoTurbofy">
             <img src="assets/img/turbofy_logo.png" alt="no imagen">
             <ion-card-title>
-              Bienvenido a Turbofy
+              ¡Hola de nuevo Turbomember!
             </ion-card-title>
           </div>
         </ion-card-header>
         <ion-card-content>
           <div id="container">
-            <p>Con Turbofy puedes guardar tus canciones favoritas, ¡Solamente tienes que registrarte gratis!</p>&nbsp;
-            <p>Tan fácil como introducir a mano los datos o buscar las canciones directamente en Spotify.</p>
+            <p>Como miembro del selecto club Turbofy tienes acceso a la funcionalidad completa.</p>
             <p>¡Tú eliges!</p>&nbsp;&nbsp;
 
-            <p>¿Quieres probar? Busca alguna canción en Turbofy</p>
+            <p>Busca canciones en Turbofy</p>
             <ion-button id="searchButton" label="searchButton" routerLink="/songs/search-songs">
               <ion-icon name="musical-note-outline"></ion-icon>&nbsp;
               Buscar canciones
             </ion-button>
 
-            <p>También puedes acceder al listado completo de canciones:</p>
+            <p>Accede al listado completo de canciones en Turbofy:</p>
             <ion-button id="allSongsButton" label="allSongsButton" routerLink="/songs/all-songs">
               <ion-icon name="musical-notes-outline"></ion-icon>&nbsp;
               Ver todas las canciones
+            </ion-button>
+
+            <p>¿Quieres añadir canciones? Rellena los datos en el formulario:</p>
+            <ion-button id="addSongButton" label="addSongsButton" routerLink="/turbomember-zone/add-song">
+              <ion-icon name="musical-notes-outline"></ion-icon>&nbsp;
+              Añadir una canción
+            </ion-button>
+
+            <p>¡También puedes importarlas desde Spotify directamente!:</p>
+            <ion-button id="addSongButton" label="addSongsButton" routerLink="/turbomember-zone/import-song">
+              <ion-icon name="musical-notes-outline"></ion-icon>&nbsp;
+              Buscar e importar desde Spotify
             </ion-button>
 
           </div>

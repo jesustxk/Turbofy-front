@@ -79,9 +79,28 @@ export class TurbofyApiService {
 
   }
 
-  async getSpotySongs() {
-    console.log('getSpotySongs');
+  async searchSpotySongs(name: String, artist: String, date: String): Promise<Song[]> {
+    console.log('searchSpotySongs');
 
+    let queryParams = '';
+
+    if (name) {
+      queryParams += 'name=' + name + ' ';
+    } else if (artist) {
+      queryParams += 'artist=' + artist + ' ';
+    } else if (date) {
+      queryParams += 'date=' + date;
+    }
+
+    let responseSongs = await fetch(this.turbofyAPI + '/songs/spoty/read?searchParams=' + queryParams, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const songs = await responseSongs.json();
+    return songs;
   }
 
   async addComment(songId: string, author: string, comment: string, rating: number) {

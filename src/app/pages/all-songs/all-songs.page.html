@@ -21,7 +21,10 @@
           </div>
 
           <div id="songInfo">
-            <div id="songInfoTitle"><ion-title>{{song.name}}</ion-title>{{song.artist}}</div>
+            <ion-title>{{song.name}}</ion-title>
+          </div>
+          <div id="songInfo">
+            {{song.artist}}
           </div>
           
           <ion-button id="detailsButton{{song._id}}" label="details" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">

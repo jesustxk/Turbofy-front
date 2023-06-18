@@ -1,6 +1,4 @@
-import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { AuthService } from './services/auth.service';
 
 export const routes: Routes = [
   {
@@ -34,12 +32,17 @@ export const routes: Routes = [
   },
   {
     path: 'turbomember-zone',
-    canMatch: [() => inject(AuthService).isLoggedIn()],
+    //canMatch: [() => inject(AuthService).isLoggedIn()],
     loadComponent: () => import('./private-pages/turbomember-zone/turbomember-zone.page').then( m => m.TurbomemberZonePage),
   },
   {
     path: 'turbomember-zone/add-song',
-    canMatch: [() => inject(AuthService).isLoggedIn()],
+    //canMatch: [() => inject(AuthService).isLoggedIn()],
     loadComponent: () => import('./private-pages/add-song/add-song.page').then( m => m.AddSongPage),
+  },
+  {
+    path: 'turbomember-zone/import-song',
+    //canMatch: [() => inject(AuthService).isLoggedIn()],
+    loadComponent: () => import('./private-pages/import-song/import-song.page').then( m => m.ImportSongPage)
   },
 ];

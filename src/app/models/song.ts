@@ -6,7 +6,6 @@ export interface Song {
     artist: string
     album: string
     image: {url: string, base64: string}
-    genre: string
     duration: number
     date: Date
     geolocation?: {latitude: number, longitude: number}

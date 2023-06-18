@@ -28,10 +28,6 @@ ion-img::part(image) {
 #songInfo {
     display: flex;
     align-items: center;
-}
-
-#songInfoTitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    max-width: 100%;
+    overflow: auto;
 }
