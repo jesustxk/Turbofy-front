@@ -64,7 +64,7 @@
               [routerLink]="['/', 'turbomember-zone', 'edit-song', song._id]" color="success">
               EDITAR
             </ion-button>
-            <ion-button *ngIf="!loggedIn" id="deleteButton{{song._id}}" label="delete" color="danger"
+            <ion-button *ngIf="loggedIn" id="deleteButton{{song._id}}" label="delete" color="danger"
               (click)="deleteSong(song._id)">
               BORRAR
             </ion-button>

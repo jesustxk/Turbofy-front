@@ -15,9 +15,8 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
 export class EditSongPage implements OnInit {
 
   songForm: FormGroup | undefined;
-
-  song: any;
   comments: Comment[] = [];
+  song: any;
 
   constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
@@ -25,7 +24,7 @@ export class EditSongPage implements OnInit {
     await this.getSong();
     
     this.songForm = this.formBuilder.group({
-      url: new FormControl(this.song.image.url, Validators.compose([
+      url: new FormControl(this.song.image?.url, Validators.compose([
         Validators.pattern('(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?')
       ])),
       name: new FormControl(this.song.name, Validators.compose([
@@ -70,7 +69,8 @@ export class EditSongPage implements OnInit {
       geolocation: {}
     }
 
-    this.turbofyApi.updateSong(editedSong);
+    this.song = await this.turbofyApi.updateSong(editedSong);
+
   }
 
 }

@@ -121,7 +121,7 @@ export class TurbofyApiService {
     return song;
   }
 
-  async deleteSong(songId: any) {
+  async deleteSong(songId: string) {
     console.log('deleteSong');
 
     let responseSong = await fetch(this.turbofyAPI + '/songs/delete?songId=' + songId, {
@@ -159,7 +159,7 @@ export class TurbofyApiService {
     return songs;
   }
 
-  async addComment(songId: string, author: string, comment: string, rating: number) {
+  async addComment(songId: string, author: string, comment: string, rating: number): Promise<Song> {
     console.log('addComment');
 
     const geolocation = await this.geolocationService.getGeolocation();
@@ -184,9 +184,18 @@ export class TurbofyApiService {
     return song;
   }
 
-  async deleteComment() {
+  async deleteComment(songId: string, commentId: string): Promise<Song> {
     console.log('deleteComment');
 
+    let responseSong = await fetch(this.turbofyAPI + '/comments/delete?songId=' + songId + '&commentId=' + commentId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    return song;
   }
 
 }

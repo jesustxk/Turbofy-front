@@ -71,6 +71,13 @@
             <h2>Fecha:</h2>
             <p>{{comment.date}}</p>
           </div>
+
+          <div id="commentButtons">
+            <ion-button *ngIf="loggedIn" id="deleteButton{{comment._id}}" label="delete" color="danger"
+              (click)="deleteComment(comment._id)">
+              BORRAR
+            </ion-button>
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-row>

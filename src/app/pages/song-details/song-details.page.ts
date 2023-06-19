@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { ActionSheetController, IonicModule } from '@ionic/angular';
 import { Comment } from '../../models/comment';
+import { AuthService } from '../../services/auth.service';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
 
 @Component({
@@ -16,11 +17,13 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
 export class SongDetailsPage implements OnInit {
 
   commentForm: FormGroup | undefined;
-
-  song: any;
   comments: Comment[] = [];
+  loggedIn: boolean;
+  song: any;
 
-  constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+  constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder,
+    private actionSheetCtrl: ActionSheetController, private authService: AuthService) {
+
     this.commentForm = this.formBuilder.group({
       author: new FormControl('', Validators.compose([
         Validators.pattern('^[ a-zñáéíóúA-ZÑÁÉÍÓÚ0-9_.,():-]*$')
@@ -36,6 +39,9 @@ export class SongDetailsPage implements OnInit {
 
   async ngOnInit() {
     this.getSong();
+
+    // Comprobamos si el usuario ha iniciado sesion
+    this.loggedIn = this.authService.isLoggedIn();
   }
 
   async getSong() {
@@ -48,7 +54,7 @@ export class SongDetailsPage implements OnInit {
 
   async addComment(value: { author: string; comment: string; rating: number }) {
     this.song = await this.turbofyApi.addComment(this.song._id, value.author, value.comment, value.rating);
-    
+
     // Por tratar de evitar errores
     if (this.song.comments) {
       this.comments = this.song.comments;
@@ -59,6 +65,27 @@ export class SongDetailsPage implements OnInit {
 
   private resetForms() {
     this.commentForm?.reset();
+  }
+
+  async deleteComment(commentId: string) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: '¿Seguro que quieres eliminar el comentario?',
+      buttons: [
+        {
+          text: 'ELIMINAR',
+          handler: async () => {
+            this.song = await this.turbofyApi.deleteComment(this.song._id, commentId);
+            
+            this.comments = this.song.comments;
+          }
+        },
+        {
+          text: 'CANCELAR'
+        },
+      ],
+    });
+
+    await actionSheet.present();
   }
 
 }
