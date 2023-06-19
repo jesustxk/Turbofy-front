@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { Toast } from '@capacitor/toast';
 import { IonicModule } from '@ionic/angular';
 import { Song } from '../../models/song';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
@@ -10,7 +12,7 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
   templateUrl: './import-song.page.html',
   styleUrls: ['./import-song.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class ImportSongPage implements OnInit {
 
@@ -18,7 +20,7 @@ export class ImportSongPage implements OnInit {
 
   songs: Song[] = [];
 
-  constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder) { }
+  constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
@@ -39,7 +41,16 @@ export class ImportSongPage implements OnInit {
   }
 
   async importSong(song: Song) {
-    await this.turbofyApi.addSong(song);
+    const response = await this.turbofyApi.addSong(song);
+
+    if (response.message) {
+      await Toast.show({
+        text: response.message,
+        position: 'top'
+      });
+    } else {
+      this.router.navigateByUrl('/songs/all-songs');
+    }
   }
 
 }

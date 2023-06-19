@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
+import { Toast } from '@capacitor/toast';
 import { IonicModule } from '@ionic/angular';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
 
@@ -10,7 +12,7 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
   templateUrl: './add-song.page.html',
   styleUrls: ['./add-song.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class AddSongPage implements OnInit {
 
@@ -18,7 +20,7 @@ export class AddSongPage implements OnInit {
 
   photo: string;
 
-  constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder) { }
+  constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.songForm = this.formBuilder.group({
@@ -64,7 +66,16 @@ export class AddSongPage implements OnInit {
       song.image = { url: value.url };
     }
 
-    this.turbofyApi.addSongFromForm(song);
+    const response = await this.turbofyApi.addSongFromForm(song);
+
+    if (response.message) {
+      await Toast.show({
+        text: response.message,
+        position: 'top'
+      });
+    } else {
+      this.router.navigateByUrl('/songs/all-songs');
+    }
   }
 
   async takePicture() {

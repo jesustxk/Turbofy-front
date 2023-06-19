@@ -70,7 +70,6 @@ export class EditSongPage implements OnInit {
     }
 
     this.song = await this.turbofyApi.updateSong(editedSong);
-
   }
 
 }
