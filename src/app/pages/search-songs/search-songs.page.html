@@ -13,15 +13,18 @@
       <div id="searchForm" *ngIf="searchForm">
         <form class="form" [formGroup]="searchForm" (ngSubmit)="searchSong(searchForm.value)">
           <ion-item>
-            <ion-input label="Nombre de la canción:" labelPlacement="floating" placeholder="nombre" type="text" formControlName="name"></ion-input>
+            <ion-input label="Nombre de la canción:" labelPlacement="floating" placeholder="nombre" type="text"
+              formControlName="name"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input label="Artista:" labelPlacement="floating" placeholder="artista" type="text" formControlName="artist"></ion-input>
+            <ion-input label="Artista:" labelPlacement="floating" placeholder="artista" type="text"
+              formControlName="artist"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input label="Fecha de lanzamiento:" labelPlacement="floating" placeholder="YYYY/MM/DD" type="text" formControlName="date"></ion-input>
+            <ion-input label="Fecha de lanzamiento:" labelPlacement="floating" placeholder="YYYY/MM/DD" type="text"
+              formControlName="date"></ion-input>
           </ion-item>
 
           <div id="formSubmit">
@@ -53,13 +56,16 @@
           </div>
 
           <div id="songButtons">
-            <ion-button id="detailsButton{{song._id}}" label="details" [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
+            <ion-button id="detailsButton{{song._id}}" label="details"
+              [routerLink]="['/', 'songs', 'song-details', song._id]" color="primary">
               DETALLES
             </ion-button>
-            <ion-button id="editButton{{song._id}}" label="edit" [routerLink]="['/', 'turbomember-zone', 'edit-song', song._id]" color="success">
+            <ion-button *ngIf="loggedIn" id="editButton{{song._id}}" label="edit"
+              [routerLink]="['/', 'turbomember-zone', 'edit-song', song._id]" color="success">
               EDITAR
             </ion-button>
-            <ion-button id="deleteButton{{song._id}}" label="delete" [routerLink]="['/', 'songs', 'song-details', song._id]" color="danger">
+            <ion-button *ngIf="!loggedIn" id="deleteButton{{song._id}}" label="delete" color="danger"
+              (click)="deleteSong(song._id)">
               BORRAR
             </ion-button>
           </div>

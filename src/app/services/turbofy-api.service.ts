@@ -99,7 +99,6 @@ export class TurbofyApiService {
     });
 
     const songs = await responseSongs.json();
-    console.log(songs)
     return songs;
   }
 
@@ -122,9 +121,18 @@ export class TurbofyApiService {
     return song;
   }
 
-  async deleteSong() {
+  async deleteSong(songId: any) {
     console.log('deleteSong');
 
+    let responseSong = await fetch(this.turbofyAPI + '/songs/delete?songId=' + songId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const song = await responseSong.json();
+    return song;
   }
 
   async searchSpotySongs(name: String, artist: String, date: String): Promise<Song[]> {
