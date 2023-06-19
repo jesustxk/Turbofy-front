@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ActionSheetController, IonicModule } from '@ionic/angular';
 import { Comment } from '../../models/comment';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +12,7 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
   templateUrl: './song-details.page.html',
   styleUrls: ['./song-details.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class SongDetailsPage implements OnInit {
 
@@ -63,10 +63,6 @@ export class SongDetailsPage implements OnInit {
     this.resetForms();
   }
 
-  private resetForms() {
-    this.commentForm?.reset();
-  }
-
   async deleteComment(commentId: string) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: '¿Seguro que quieres eliminar el comentario?',
@@ -86,6 +82,10 @@ export class SongDetailsPage implements OnInit {
     });
 
     await actionSheet.present();
+  }
+
+  private resetForms() {
+    this.commentForm?.reset();
   }
 
 }

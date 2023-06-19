@@ -41,15 +41,20 @@ export class ImportSongPage implements OnInit {
   }
 
   async importSong(song: Song) {
+    // Importamos la cancion
     const response = await this.turbofyApi.addSong(song);
 
+    // Controlamos la respuesta
     if (response.message) {
       await Toast.show({
         text: response.message,
         position: 'top'
       });
     } else {
-      this.router.navigateByUrl('/songs/all-songs');
+      await Toast.show({
+        text: 'Canción añadida',
+        position: 'top'
+      });
     }
   }
 

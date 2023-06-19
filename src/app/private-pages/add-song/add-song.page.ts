@@ -17,7 +17,6 @@ import { TurbofyApiService } from '../../services/turbofy-api.service';
 export class AddSongPage implements OnInit {
 
   songForm: FormGroup | undefined;
-
   photo: string;
 
   constructor(private turbofyApi: TurbofyApiService, private formBuilder: FormBuilder, private router: Router) { }
@@ -66,15 +65,22 @@ export class AddSongPage implements OnInit {
       song.image = { url: value.url };
     }
 
+    // Añadimos la cancion
     const response = await this.turbofyApi.addSongFromForm(song);
 
+    // Controlamos la respuesta
     if (response.message) {
       await Toast.show({
         text: response.message,
         position: 'top'
       });
     } else {
-      this.router.navigateByUrl('/songs/all-songs');
+      await Toast.show({
+        text: 'Canción añadida',
+        position: 'top'
+      });
+
+      this.resetForms();
     }
   }
 
@@ -86,6 +92,10 @@ export class AddSongPage implements OnInit {
     });
 
     this.photo = 'data:image/jpeg;base64,' + image.base64String;
+  }
+
+  private resetForms() {
+    this.songForm?.reset();
   }
 
 }

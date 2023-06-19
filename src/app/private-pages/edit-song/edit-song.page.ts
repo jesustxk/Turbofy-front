@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Toast } from '@capacitor/toast';
 import { IonicModule } from '@ionic/angular';
 import { TurbofyApiService } from '../../services/turbofy-api.service';
 
@@ -18,7 +19,7 @@ export class EditSongPage implements OnInit {
   comments: Comment[] = [];
   song: any;
 
-  constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+  constructor(private turbofyApi: TurbofyApiService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) { }
 
   async ngOnInit() {
     await this.getSong();
@@ -69,7 +70,23 @@ export class EditSongPage implements OnInit {
       geolocation: {}
     }
 
-    this.song = await this.turbofyApi.updateSong(editedSong);
+    const response = await this.turbofyApi.updateSong(editedSong);
+
+    // Controlamos la respuesta
+    if (response.message) {
+      await Toast.show({
+        text: response.message,
+        position: 'top'
+      });
+    } else {
+      await Toast.show({
+        text: 'Canción editada',
+        position: 'top'
+      });
+
+      // Solo si va bien, redirigimos a detalles
+      this.router.navigateByUrl('/songs/song-details/' + this.song._id);
+    }
   }
 
 }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Toast } from '@capacitor/toast';
 import { ActionSheetController, IonicModule } from '@ionic/angular';
 import { Song } from '../../models/song';
 import { AuthService } from '../../services/auth.service';
@@ -36,8 +37,14 @@ export class AllSongsPage implements OnInit {
         {
           text: 'ELIMINAR',
           handler: async () => {
-            await this.turbofyApi.deleteSong(songId);
+            const response = await this.turbofyApi.deleteSong(songId);
 
+            // Controlamos la respuesta
+            await Toast.show({
+              text: response.message,
+              position: 'top'
+            });
+            
             this.songs = await this.turbofyApi.getAllSongs();
           }
         },
