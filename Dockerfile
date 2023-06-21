@@ -1,7 +1,7 @@
 FROM node:18-alpine AS build
 
 # Create app directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -14,7 +14,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-RUN npm run-script build:prod
+RUN ionic build --prod
 
 FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
