@@ -8,13 +8,13 @@ WORKDIR /app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install -g ionic
+RUN npm install -g @ionic/cli
 RUN npm install
 
 # Bundle app source
 COPY . .
 
-RUN ionic build
+RUN npm run-script build:prod
 
 FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
