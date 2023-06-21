@@ -7,7 +7,7 @@ import { GeolocationService } from '../services/geolocation.service';
 })
 export class TurbofyApiService {
 
-  turbofyAPI: string = 'http://localhost:8080';
+  turbofyAPI: string = 'http://turbofy-back.cnsa2023jcg577.tech:8080';
 
   constructor(private geolocationService: GeolocationService) { }
 
